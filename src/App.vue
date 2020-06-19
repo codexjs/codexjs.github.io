@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import AppHeader from "./components/app/AppHeader.vue";
-import env from "@/env";
+import AppHeader from "./components/AppHeader.vue";
+import { menuTemplate } from "@/env";
 
 export default {
   name: "App",
@@ -20,7 +20,7 @@ export default {
     AppHeader
   },
   data: () => ({
-    menuTemplate: env.menuTemplate
+    menuTemplate: menuTemplate
   })
 };
 </script>

@@ -8,16 +8,16 @@
 </template>
 
 <script>
-import DynamicTextVue from "@/components/home/DynamicText.vue";
-import env from "@/env";
+import DynamicTextVue from "@/components/DynamicText.vue";
+import { textConfig } from "@/env";
 
 export default {
   name: "Home",
   components: {
     DynamicTextVue
   },
-  data:()=>({
-    textConfig: env.textConfig
+  data: () => ({
+    textConfig: textConfig
   }),
   methods: {
     movingBackgroundImage() {
