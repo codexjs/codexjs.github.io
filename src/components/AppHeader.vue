@@ -15,15 +15,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbar-collapse" style="height: 3em !important">
           <ul class="nav navbar-nav">
             <li v-for="(config, k, index) in menu" :key="k">
-              <router-link
-                :class="$route.name == config.componentName ? 'active' : null"
-                :to="k"
-                title
-              >
+              <router-link :class="checkCurrentRoute(config)" :to="k" title>
                 <span
                   @click="menuClicked"
                 >{{(index + 1).toString().padStart(2,"0")}} : {{config.show}}</span>
@@ -40,13 +35,16 @@
 export default {
   name: "AppHeader",
   props: {
-    // menu: Array
     menu: Object
   },
   data: () => ({
     home: true
   }),
   methods: {
+    checkCurrentRoute(config) {
+      if (this.$route.name && this.$route.name == config.componentName)
+        return "active";
+    },
     menuClicked() {
       document.getElementById("menuButton").click();
     }

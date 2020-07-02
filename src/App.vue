@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header :menu="menuTemplate" />
+    <app-header :menu="templateConfig" />
     <router-view />
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
@@ -12,7 +12,7 @@
 
 <script>
 import AppHeader from "./components/AppHeader.vue";
-import { menuTemplate } from "@/env";
+import { templateConfig } from "@/env";
 
 export default {
   name: "App",
@@ -20,7 +20,7 @@ export default {
     AppHeader
   },
   data: () => ({
-    menuTemplate: menuTemplate
+    templateConfig: templateConfig
   })
 };
 </script>

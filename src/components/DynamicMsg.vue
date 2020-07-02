@@ -24,7 +24,7 @@
 import Typed from "typed.js";
 
 export default {
-  name: "DynamicText",
+  name: "DynamicMsg",
   props: {
     config: {
       type: Object,

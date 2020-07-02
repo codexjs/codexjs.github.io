@@ -3,21 +3,21 @@
     class="hero-full-container background-image-container white-text-container"
     :style="{ 'background-image': `url(${require('@/assets/images/space.jpg')})` }"
   >
-    <dynamic-text-vue :config="textConfig" />
+    <dynamic-msg-vue :config="textConfig" />
   </div>
 </template>
 
 <script>
-import DynamicTextVue from "@/components/DynamicText.vue";
-import { textConfig } from "@/env";
+import DynamicMsgVue from "@/components/DynamicMsg.vue";
+import { homeConfig } from "@/env";
 
 export default {
   name: "Home",
   components: {
-    DynamicTextVue
+    DynamicMsgVue
   },
   data: () => ({
-    textConfig: textConfig
+    textConfig: homeConfig.textConfig
   }),
   methods: {
     movingBackgroundImage() {

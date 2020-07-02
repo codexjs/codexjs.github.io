@@ -1,7 +1,8 @@
 .navbar{
   border:none;
   min-height: inherit;
-  background: none;
+  // background: none;
+  height: 5em !important;
   
   @media (min-width: $screen-sm) {
     margin: 10px;

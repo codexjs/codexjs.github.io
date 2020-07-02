@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="section-container-spacer text-center">
-              <h1 class="h2">03 : Contact me</h1>
+              <h1 class="h2">{{routerIndex}} : {{routerName}}</h1>
             </div>
 
             <div class="row">
@@ -66,3 +66,20 @@
     </div>
   </div>
 </template>
+
+<script>
+import { templateConfig } from "@/env";
+
+export default {
+  computed: {
+    routerIndex() {
+      let key = this.$route.path.replace("/", "");
+      let index = templateConfig[key]["index"];
+      return (index + 1).toString().padStart(2, "0");
+    },
+    routerName() {
+      return this.$route.name;
+    }
+  }
+};
+</script>
