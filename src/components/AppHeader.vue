@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbar-collapse" style="height: 3em !important">
           <ul class="nav navbar-nav">
             <li v-for="(config, k, index) in menu" :key="k">
-              <router-link :class="checkCurrentRoute(config)" :to="k" title>
+              <router-link :class="checkCurrentRoute(config)" :to="`/${k}`" title>
                 <span
                   @click="menuClicked"
                 >{{(index + 1).toString().padStart(2,"0")}} : {{config.show}}</span>
@@ -42,8 +42,7 @@ export default {
   }),
   methods: {
     checkCurrentRoute(config) {
-      if (this.$route.name && this.$route.name == config.componentName)
-        return "active";
+      if (this.$route.name && this.$route.name == config.name) return "active";
     },
     menuClicked() {
       document.getElementById("menuButton").click();

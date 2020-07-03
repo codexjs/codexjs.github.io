@@ -19,15 +19,26 @@ for (let i = 0; i < menuKeys.length; i++) {
   if (i == 0) {
     dynamicRoutes.push({
       path: '/',
-      name: value.componentName,
+      name: value.name,
       component: Home // Home || lazy import
     });
   } else {
-    dynamicRoutes.push({
-      path: `/${key}`,
-      name: value.componentName,
-      component: () => import(`../views/${value.componentName}.vue`)
-    });
+    let newRoute = {
+      path: `${value.path || "/" + key}`,
+      name: value.name,
+      component: () => import(`../views/${value.name}.vue`)
+    };
+    if (value.children) {
+      newRoute.children = []
+      for(let j = 0; j < value.children.length; j++){
+        newRoute.children.push({
+          path: `${value.children[j].path || key}`,
+          name: value.children[j].name,
+          component: () => import(`../views/${value.children[j].name}.vue`)
+        });
+      }
+    }
+    dynamicRoutes.push(newRoute);
   }
 
   if (i == menuKeys.length - 1) {
@@ -39,7 +50,6 @@ for (let i = 0; i < menuKeys.length; i++) {
 }
 
 const routes = dynamicRoutes;
-
 const router = new VueRouter({
   mode: 'history',
   routes
