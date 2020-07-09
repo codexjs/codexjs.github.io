@@ -3,11 +3,6 @@
     <vue-particles color="#dedede" clickMode="repulse"></vue-particles>
     <app-header :menu="templateConfig" />
     <router-view />
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>-->
   </div>
 </template>
 
@@ -33,6 +28,4 @@ export default {
   height: 100%;
   position: fixed;
 }
-
-
 </style>

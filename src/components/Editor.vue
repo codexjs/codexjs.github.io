@@ -8,7 +8,7 @@
       style="display: flex;"
       :style="menuShow ?  {'justify-content': 'space-around'} : {'justify-content': 'space-between'}"
     >
-      <span v-show="!menuShow" @click="menuShow = !menuShow" style="padding: 1em">🡄</span>
+      <span v-show="!menuShow" @click="back" style="padding: 1em">🡄</span>
       <span @click="close" style="padding: 1em">{{status ? 'x' : 'Edit'}}</span>
     </div>
 
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { deepSet, deepGet } from "@/components/Deep";
+import { deepSet, deepGet } from "@/libraries/Deep";
 
 export default {
   name: "Editor",
@@ -61,16 +61,6 @@ export default {
     target: null,
     value: ""
   }),
-  // mounted() {
-  //   this.config.forEach(res => {
-  //     let value = res.children
-  //       ? deepGet(res.content, res.children)
-  //       : res.content;
-  //     res.object = typeof value == "object";
-  //     if (res.object) res.origin = { ...value };
-  //     else res.origin = origin;
-  //   });
-  // },
   methods: {
     close() {
       this.status = !this.status;
@@ -86,22 +76,6 @@ export default {
         this.error = true;
       }
     },
-    // setTarget(value) {
-    //   // In order to don't loose the reference;
-    //   if (this.target.children)
-    //     deepSet(this.target.content, this.target.children, value);
-    //   else {
-    //     let keyArray = { ...this.target.content };
-    //     Object.keys(value).forEach(res => {
-    //       this.target.content[res] = value[res];
-    //       delete keyArray[res];
-    //     });
-    //     Object.keys(keyArray).forEach(res => {
-    //       this.target.content[res] = null;
-    //       delete this.target.content[res];
-    //     });
-    //   }
-    // },
     contentEdited() {
       try {
         let value;
@@ -112,21 +86,25 @@ export default {
         this.menuShow = true;
         this.error = false;
 
-        // this.setTarget(value);
         this.$emit("changed", this.target, value);
       } catch (err) {
         this.error = true;
       }
     },
     contentReset() {
-      if (this.target.object)
-        this.value = JSON.stringify(this.target.origin, null, 2);
-      else this.value = this.target.origin;
-
       this.error = false;
-
-      // this.setTarget(this.target.origin);
-      this.$emit("changed", this.target, this.target.origin);
+      if (this.target.children) {
+        // let origin = this.origin[this.target.children[0]];
+        let origin = deepGet(this.origin, this.target.children);
+        if (this.target.object) this.value = JSON.stringify(origin, null, 2);
+        else this.value = origin;
+        this.$emit("changed", this.target, origin);
+      } else {
+        if (this.target.object)
+          this.value = JSON.stringify(this.origin, null, 2);
+        else this.value = this.origin;
+        this.$emit("changed", this.target, this.origin);
+      }
     },
     keyPress(event) {
       if (event.which == 10) this.contentEdited();
@@ -139,6 +117,10 @@ export default {
       }
       this.target = v;
       this.menuShow = !this.menuShow;
+    },
+    back(){
+      this.menuShow = !this.menuShow;
+      this.error = false;
     }
   },
   watch: {
@@ -150,8 +132,9 @@ export default {
             ? deepGet(res.content, res.children)
             : res.content;
           res.object = typeof value == "object";
-          if (res.object) res.origin = { ...value };
-          else res.origin = origin;
+          if (!this.origin && !res.children) {
+            this.origin = { ...value };
+          }
         });
       }
     }
@@ -179,7 +162,6 @@ export default {
 }
 
 .jsonText {
-  /* height: 86% !important; */
   height: 40em !important;
   width: 95%;
   resize: none;

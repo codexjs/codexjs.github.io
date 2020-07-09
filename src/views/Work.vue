@@ -3,7 +3,6 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <!-- <img src="@/assets/images/work001-01.jpg" class="img-responsive" alt /> -->
           <img
             :src="require(`@/assets/images/${config[$route.params.id].image ? config[$route.params.id].image : 'work001-01.jpg'}`)"
             class="img-responsive entryImage"
@@ -26,26 +25,9 @@
             <blockquote>
               <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
               <small class="pull-right">Irina Martin</small>
-            </blockquote>-->
+            </blockquote> -->
           </div>
         </div>
-
-        <!-- <div class="col-md-8 col-md-offset-2 section-container-spacer">
-          <div class="row">
-            <div class="col-xs-12 col-md-6">
-              <img src="@/assets/images/work001-02.jpg" class="img-responsive" alt />
-              <p>Menphis skyline</p>
-            </div>
-            <div class="col-xs-12 col-md-6">
-              <img src="@/assets/images/work001-03.jpg" class="img-responsive" alt />
-              <p>Menphis skyline</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xs-12">
-          <img src="@/assets/images/work001-04.jpg" class="img-responsive" alt />
-        </div>-->
       </div>
     </div>
   </div>

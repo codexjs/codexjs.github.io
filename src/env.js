@@ -3,24 +3,38 @@ export const homeConfig = {
     show: "Home",
     textConfig: {
         firstMssg: "Hi,",
-        mssgArray: ["I'm Daniel", "Front End Developer"]
+        mssgArray: ["Welcome", "I'm Daniel", "Front End Developer"]
     }
 }
 
+const contentExample = [{
+        type: "title3",
+        content: "Consectetur adipiscing elit"
+    },
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras ultrices hendrerit nisl.",
+    {
+        type: "title3",
+        content: "Ut enim ad minim"
+    },
+    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    {
+        type: "title3",
+        content: "Maecenas luctus at sem quis varius"
+    },
+    "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis blandit. Cras ultrices hendrerit nisl."
+];
 export const projectsConfig = {
     work1: {
         title: "Project 1",
         description: "Proin pharetra metus id iaculis dignissim. In aliquet lorem ut ex ullamcorper.",
         image: "work01-hover.jpg",
-        content: [{
-            type: "title3",
-            content: "My huge project ^^!!"
-        }]
+        content: contentExample
     },
     work2: {
         title: "Project 2",
         description: "Fusce sed hendrerit augue, a rhoncus velit. In non lorem mattis, tempor sem sit amet.",
         image: "work02-hover.jpg",
+
     },
     work3: {
         title: "Project 3",
@@ -59,8 +73,6 @@ export const projectsConfig = {
     }
 }
 
-
-
 export const worksConfig = {
     name: "Works",
     show: "Work",
@@ -76,63 +88,39 @@ export const aboutConfig = {
     name: "About",
     show: "About me",
     image: "profil.jpg",
-    // content: [{
-    //         type: "title3",
-    //         content: "Consectetur adipiscing elit"
-    //     },
-    //     {
-    //         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras ultrices hendrerit nisl."
-    //     },
-    //     {
-    //         type: "title3",
-    //         content: "Ut enim ad minim"
-    //     },
-    //     {
-    //         content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    //     },
-    //     {
-    //         type: "title3",
-    //         content: "Maecenas luctus at sem quis varius"
-    //     },
-    //     {
-    //         content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis blandit. Cras ultrices hendrerit nisl."
-    //     }
-    // ]
     content: {
         title1: {
             type: "title3",
             content: "Consectetur adipiscing elit"
         },
-        text1: {
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras ultrices hendrerit nisl."
-        },
+        text1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras ultrices hendrerit nisl.",
         title2: {
             type: "title3",
             content: "Ut enim ad minim"
         },
-        text2: {
-            content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        },
+        text2: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         title3: {
             type: "title3",
             content: "Maecenas luctus at sem quis varius"
         },
-        text3: {
-            content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis blandit. Cras ultrices hendrerit nisl."
-        }
+        text3: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis blandit. Cras ultrices hendrerit nisl."
+
     }
 };
 export const contactConfig = {
     name: "Contact",
     show: "Contact",
-    phone: "+34 696 51 26 11",
-    email: "test@portfolio,com",
-    location: "Spain",
-    social: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#"
+    config: {
+        phone: "+34 000 00 00 00",
+        email: "example@portfolio.com",
+        location: "Spain",
+        social: {
+            facebook: "#",
+            twitter: "#",
+            linkedin: "#"
+        }
     }
+
 };
 // export const componentsConfig = {
 //     name: "Components",

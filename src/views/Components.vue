@@ -1,6 +1,5 @@
 <template>
   <div class="section-container">
-    <!-- Add your site or app content here -->
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-6">

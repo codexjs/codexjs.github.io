@@ -92,20 +92,50 @@
         </div>
       </div>
     </div>
+    <editor :config="menuConfig" @changed="changed" />
   </div>
 </template>
 
 <script>
+import { deepSet } from "@/libraries/Deep";
 import { contactConfig } from "@/env";
 
+import Editor from "@/components/Editor.vue";
+
 export default {
-  data: () => ({
-    title: contactConfig.show,
-    config: contactConfig
-  }),
+  components: {Editor},
   computed: {
     routerIndex() {
       return (contactConfig.index + 1).toString().padStart(2, "0");
+    }
+  },
+  data: () => ({
+    title: contactConfig.show,
+    config: contactConfig.config
+  }),
+  watch: {
+    config: {
+      immediate: true,
+      handler(newValue) {
+        this.menuConfig = [{ show: "Contact", content: newValue }];
+        Object.keys(newValue).forEach(res => {
+          let show = res.charAt(0).toUpperCase() + res.slice(1);
+          this.menuConfig.push({
+            show: show,
+            content: newValue,
+            children: [res]
+          });
+        });
+      }
+    }
+  },
+  methods: {
+    changed(target, value) {
+      if (target.children) {
+        deepSet(this.config, target.children, value);
+      } else {
+        this.config = value;
+      }
     }
   }
 };

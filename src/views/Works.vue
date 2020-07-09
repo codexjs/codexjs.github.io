@@ -19,11 +19,11 @@
 </template>
 
 <script>
+import { deepSet } from "@/libraries/Deep";
+import { worksConfig, projectsConfig } from "@/env";
+
 import Carousel from "@/components/Carousel/Carousel.vue";
 import Editor from "@/components/Editor.vue";
-
-import { worksConfig, projectsConfig } from "@/env";
-import { deepSet } from "@/components/Deep";
 
 export default {
   name: "Works",
@@ -39,6 +39,11 @@ export default {
     let id = to.params.id;
     id && !this.projectsConfig[id] ? next("/works") : next(true);
   },
+  computed: {
+    routerIndex() {
+      return (worksConfig.index + 1).toString().padStart(2, "0");
+    }
+  },
   data: () => ({
     text: worksConfig.text,
     menuConfig: [],
@@ -46,16 +51,6 @@ export default {
     name: worksConfig.name,
     title: worksConfig.show
   }),
-  methods: {
-    changed(target, value) {
-      if (target.children) {
-        deepSet(this.projectsConfig, target.children, value);
-      } else {
-        this.projectsConfig = value;
-        if (this.$route.path != "/works") this.$router.push({ path: "/works" });
-      }
-    }
-  },
   watch: {
     projectsConfig: {
       immediate: true,
@@ -71,9 +66,14 @@ export default {
       }
     }
   },
-  computed: {
-    routerIndex() {
-      return (worksConfig.index + 1).toString().padStart(2, "0");
+  methods: {
+    changed(target, value) {
+      if (target.children) {
+        deepSet(this.projectsConfig, target.children, value);
+      } else {
+        this.projectsConfig = value;
+        if (this.$route.path != "/works") this.$router.push({ path: "/works" });
+      }
     }
   }
 };
