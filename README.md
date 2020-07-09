@@ -4,7 +4,7 @@
 
 Well as a frontend developer I have to have my own portfolio where to show my projects.
 So instead of using a tool like Wordpress, Wix ... I decided to made my own with Vue and also been able to show my Vue knowledge in this moment.
-I started with a simple template wich you can find here `` and I transform the entire static page in a Dynamic Web Page using Vue.
+I started with a simple template which you can find [here](http://www.mashup-template.com/preview.html?template=univers) and I transform the entire static page in a Dynamic Web Page using Vue.
 
 ## So what makes this portfolio special?
 
@@ -18,7 +18,7 @@ you will be able to create a complete new webpage with the content that you want
 
 ## Lorem Ipsum ¿?
 
-Right now the content of this project is just a mockap, in the future I will change the entire page in order to convert it in my own portfolio with my projects.
+Right now the content of this project is just a mockup, in the future I will change the entire page in order to convert it in my own portfolio with my projects.
 
 # Edit Button
 
@@ -55,7 +55,7 @@ An array of messages to config typed.js
 
 ## Works
 
-In the Edit Work Menu you will find at least the Works Button wich let you edit the entire config object and also the list of all the projects / works in the Works Config Object.
+In the Edit Work Menu you will find at least the Works Button which let you edit the entire config object and also the list of all the projects / works in the Works Config Object.
 
 > ⚠️ Whe changes that you make in the Works Config is going to change the menu options depending on current value.
 
@@ -87,7 +87,7 @@ This property change the description showed in the carousel.
 
 ### image
 
-> ⚠️ This option is just useful in env.js file leting you changing the image fast.
+> ⚠️ This option is just useful in env.js file letting you changing the image fast.
 > The image that is going to charge for that work.
 
 ```js
@@ -98,14 +98,14 @@ This property change the description showed in the carousel.
 
 ### content
 
-In this property I'm going to introduce you the DynamicText component wich is a simple component wich let you show a title or a text depending on a configuration where you have two parameters type and content:
+In this property I'm going to introduce you the DynamicText component which is a simple component which let you show a title or a text depending on a configuration where you have two parameters type and content:
 
 ##### DynamicText.type:
 
 This parameter let you chose what type of text you want to create:
 
 - In order to create a big title (h1) set this property to "title"
-- In order to create a midlle title (h2) set this property to "title2"
+- In order to create a middle title (h2) set this property to "title2"
 - In order to create a small title (h3) set this property to "title3"
   If the value is empty or none on the listed above the component is going to create a simple text (p)
 
@@ -131,9 +131,9 @@ Inside of the content property you need an Array of DynamicText Config Objects o
 
 ## About Me
 
-This Menu work the same as The Works Menu, you will always find the About Me option wich let you change the About Me Config Object and also the list of all current properties inside the About Me Config Object.
+This Menu work the same as The Works Menu, you will always find the About Me option which let you change the About Me Config Object and also the list of all current properties inside the About Me Config Object.
 
-The configuration of this object works exactly as the content propery on the Work section, the difference is that here you have to specify a key for the DynamicText Config.
+The configuration of this object works exactly as the content property on the Work section, the difference is that here you have to specify a key for the DynamicText Config.
 
 ```js
 // About Me Object example
@@ -149,7 +149,7 @@ The configuration of this object works exactly as the content propery on the Wor
 ## Contact
 
 In this page you will find a simple Contact form, information and social media buttons.
-In this moment you can only change the information or the social media links, you just have to change the value of the propertie that you want to change.
+In this moment you can only change the information or the social media links, you just have to change the value of the property that you want to change.
 
 ```js
 {
@@ -174,74 +174,6 @@ In the editor you have 3 options:
 - The left button (Format the text in the editor)
 - The Edit button (Edit the selected object to the value in the textbox)
 - The right button (Set the value of the selected object to it's original value)
-
-## env.js file
-
-In this file is where all the configuration objects of the entire webpage are stored.
-Here you can change and personalize the webpage as you like just changing the value of the objects as you wish.
-
-In this file you will find objects with properties like "name" or "show" this properties are for customize menu and the dynamic routes.
-
-#### homeConfig
-
-This object store all the configuration of the Home Page
-
-- The routing and menu configuration ("name" and "show")
-- The textConfig object configuration.
-
-#### worksConfig
-
-This object store all the configuration of the Works Page
-
-- The routing and menu configuration ("name" and "show")
-- The property "text" wich is the text to display in the Works page.
-- ##### projectsConfig
-  - This object is the default projects configuration with 8 empty projects and the first one with a mockap example (contentExample)
-- And last but not least the children configuration for the routing.
-
-#### aboutConfig
-
-This object store all the configuration of the About Me Page
-
-- The routing and menu configuration ("name" and "show")
-- The image to show in the page
-- And the property "content" where you can set the text of the "About Page" as I explained before
-
-#### contactConfig
-
-This object store all the configuration of the Contact Page
-
-- The routing and menu configuration ("name" and "show")
-- And the property config where you can set the configuation of the contact information as I explained before.
-
-#### templateConfig
-
-This last object is one of the most important objects in order to make this webpage work.
-The dynamic routes are going to be generated based on the content in this object using the key's as the path and the propertie name to specify wich component charge, also if the property "children" exist it will be added too.
-
-You can check how this works in the index.js where you can find the code to make the routing object.
-
-## Project setup
-
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## License
 
