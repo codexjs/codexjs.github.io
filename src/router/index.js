@@ -30,10 +30,9 @@ for (let i = 0; i < menuKeys.length; i++) {
     };
     if (value.children) {
       newRoute.children = []
-      for(let j = 0; j < value.children.length; j++){
+      for (let j = 0; j < value.children.length; j++) {
         newRoute.children.push({
-          path: `${value.children[j].path || key}`,
-          name: value.children[j].name,
+          ...value.children[j],
           component: () => import(`../views/${value.children[j].name}.vue`)
         });
       }

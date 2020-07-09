@@ -18,7 +18,12 @@
         <div class="collapse navbar-collapse" id="navbar-collapse" style="height: 3em !important">
           <ul class="nav navbar-nav">
             <li v-for="(config, k, index) in menu" :key="k">
-              <router-link :class="checkCurrentRoute(config)" :to="`/${k}`" title>
+              <router-link
+                v-if="config.show"
+                :class="checkCurrentRoute(config)"
+                :to="`/${k}`"
+                title
+              >
                 <span
                   @click="menuClicked"
                 >{{(index + 1).toString().padStart(2,"0")}} : {{config.show}}</span>
@@ -50,10 +55,10 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.fullPath != "/") {
-        this.home = false;
-      } else {
+      if (to.fullPath == "/" || to.fullPath == "/game") {
         this.home = true;
+      } else {
+        this.home = false;
       }
     }
   }

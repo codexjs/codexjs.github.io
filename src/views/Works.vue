@@ -10,40 +10,70 @@
           </div>
         </div>
         <div class="col-md-12">
-          <!-- <carousel :loop="projectsIds" :config="projectsConfig" /> -->
           <carousel :config="projectsConfig" />
         </div>
       </div>
     </div>
-    <editor :config="projectsConfig" @changed="changed" />
+    <editor :config="menuConfig" @changed="changed" />
   </div>
 </template>
 
 <script>
-import Carousel from "@/components/Carousel.vue";
+import Carousel from "@/components/Carousel/Carousel.vue";
 import Editor from "@/components/Editor.vue";
 
-import { worksConfig } from "@/env";
+import { worksConfig, projectsConfig } from "@/env";
+import { deepSet } from "@/components/Deep";
+
 export default {
   name: "Works",
   components: {
     Carousel,
     Editor
   },
+  beforeRouteEnter(to, from, next) {
+    let id = to.params.id;
+    id && !worksConfig.projectsConfig[id] ? next("/works") : next(true);
+  },
+  beforeRouteUpdate(to, from, next) {
+    let id = to.params.id;
+    id && !this.projectsConfig[id] ? next("/works") : next(true);
+  },
   data: () => ({
     text: worksConfig.text,
+    menuConfig: [],
     projectsConfig: worksConfig.projectsConfig,
     name: worksConfig.name,
     title: worksConfig.show
   }),
+  methods: {
+    changed(target, value) {
+      if (target.children) {
+        deepSet(this.projectsConfig, target.children, value);
+      } else {
+        this.projectsConfig = value;
+        if (this.$route.path != "/works") this.$router.push({ path: "/works" });
+      }
+    }
+  },
+  watch: {
+    projectsConfig: {
+      immediate: true,
+      handler(newValue) {
+        this.menuConfig = [{ show: "Projects", content: newValue }];
+        Object.keys(newValue).forEach(res => {
+          this.menuConfig.push({
+            show: newValue[res].title,
+            content: newValue,
+            children: [res]
+          });
+        });
+      }
+    }
+  },
   computed: {
     routerIndex() {
       return (worksConfig.index + 1).toString().padStart(2, "0");
-    }
-  },
-  methods: {
-    changed(v) {
-      this.projectsConfig = v;
     }
   }
 };

@@ -68,7 +68,7 @@ export const worksConfig = {
     projectsConfig,
     children: [{
         path: ":id",
-        name: "Work"
+        name: "Work",
     }]
 };
 
@@ -76,28 +76,51 @@ export const aboutConfig = {
     name: "About",
     show: "About me",
     image: "profil.jpg",
-    content: [{
+    // content: [{
+    //         type: "title3",
+    //         content: "Consectetur adipiscing elit"
+    //     },
+    //     {
+    //         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras ultrices hendrerit nisl."
+    //     },
+    //     {
+    //         type: "title3",
+    //         content: "Ut enim ad minim"
+    //     },
+    //     {
+    //         content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    //     },
+    //     {
+    //         type: "title3",
+    //         content: "Maecenas luctus at sem quis varius"
+    //     },
+    //     {
+    //         content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis blandit. Cras ultrices hendrerit nisl."
+    //     }
+    // ]
+    content: {
+        title1: {
             type: "title3",
             content: "Consectetur adipiscing elit"
         },
-        {
+        text1: {
             content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras ultrices hendrerit nisl."
         },
-        {
+        title2: {
             type: "title3",
             content: "Ut enim ad minim"
         },
-        {
+        text2: {
             content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
-        {
+        title3: {
             type: "title3",
             content: "Maecenas luctus at sem quis varius"
         },
-        {
+        text3: {
             content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis blandit. Cras ultrices hendrerit nisl."
         }
-    ]
+    }
 };
 export const contactConfig = {
     name: "Contact",
@@ -116,6 +139,11 @@ export const contactConfig = {
 //     show: "Components"
 // };
 
+export const componentsGame = {
+    name: "Game",
+    // show: "Game"
+};
+
 
 export const templateConfig = {
     // the first key is going to redirect to '/'
@@ -123,5 +151,6 @@ export const templateConfig = {
     works: worksConfig,
     about: aboutConfig,
     contact: contactConfig,
+    game: componentsGame
     // components: componentsConfig
 }

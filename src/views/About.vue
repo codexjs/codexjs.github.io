@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <editor :config="content" @changed="changed" />
+    <editor :config="menuConfig" />
   </div>
 </template>
 
@@ -48,12 +48,46 @@ export default {
   data: () => ({
     title: aboutConfig.show,
     content: aboutConfig.content,
-    image: aboutConfig.image
+    image: aboutConfig.image,
+    menuConfig: [
+      {
+        show: "About me",
+        content: aboutConfig.content
+      },
+      {
+        show: "Title1",
+        children: ["title1"],
+        content: aboutConfig.content
+      },
+      {
+        show: "Text1",
+        children: ["text1"],
+        content: aboutConfig.content
+      },
+      {
+        show: "Title2",
+        children: ["title2"],
+        content: aboutConfig.content
+      },
+      {
+        show: "Text2",
+        children: ["text2"],
+        content: aboutConfig.content
+      },
+      {
+        show: "Title3",
+        children: ["title3"],
+        content: aboutConfig.content
+      },
+      {
+        show: "Title3",
+        children: ["text3"],
+        content: aboutConfig.content
+      }
+    ]
   }),
-  methods: {
-    changed(v) {
-      this.content = v;
-    }
+  beforeMount() {
+    // this.menuConfig.push({ show: "Test", content: this.content });
   },
   computed: {
     routerIndex() {
@@ -64,7 +98,7 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .floating {
     color: white;
     border-color: white;
@@ -72,5 +106,5 @@ export default {
   .section-container {
     padding: 30px 0;
   }
-}
+} */
 </style>

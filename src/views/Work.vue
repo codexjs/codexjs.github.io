@@ -5,7 +5,7 @@
         <div class="col-xs-12">
           <!-- <img src="@/assets/images/work001-01.jpg" class="img-responsive" alt /> -->
           <img
-            :src="require(`@/assets/images/${config[$route.params.id].image}`)"
+            :src="require(`@/assets/images/${config[$route.params.id].image ? config[$route.params.id].image : 'work001-01.jpg'}`)"
             class="img-responsive entryImage"
             alt
           />
@@ -13,7 +13,7 @@
             <div class="text-center">
               <h1
                 class="h2"
-              >{{($route.params.id.replace("work","")).toString().padStart(3,"0")}} : {{config[$route.params.id].title}}</h1>
+              >{{$route.params.id.replace("work","").padStart(3,"0")}} : {{ config[$route.params.id].title }}</h1>
             </div>
             <DynamicText
               v-for="(element, i) in config[$route.params.id].content"

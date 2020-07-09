@@ -43,11 +43,13 @@ export default {
         loop: true,
         loopCount: Infinity
       });
+      this.config.mssgArray = this.typed.strings;
     }
   },
   watch: {
     "config.mssgArray"(v) {
-      let strings = v || [""];
+      if (!v || v.length == 0) v = [""];
+      let strings = v;
       this.typed.arrayPos = 0;
       this.typed.strings = strings;
       for (let i = 0; i < strings.length; i++) {
