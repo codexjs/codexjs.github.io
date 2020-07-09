@@ -37,7 +37,8 @@ export default {
   data: () => ({
     msg: "",
     value: "",
-    position: ""
+    position: "",
+    end: false
   }),
   mounted() {
     this.resetGame();
@@ -73,33 +74,35 @@ export default {
       this.$refs.position.focus();
     },
     placeChip(position) {
-      if (position > 0 && position <= 7) {
-        position = position - 1;
-        if (this._game[this._nextChipPlace[position]]) {
-          this._game[this._nextChipPlace[position]][
-            position
-          ] = this.currentPlayer;
-          if (this.currentPlayer == "🔵") this.currentPlayer = "🔴";
-          else this.currentPlayer = "🔵";
-          this._nextChipPlace[position]--;
-          this.print();
-          this.resetPlaceInput();
-          this.msg = "";
-          this._checkWin(position);
-        } else {
-          this.print();
-          this.msg = " ⚠️ Position is full! ⚠️ ";
-          for (let i = 0; i < 7; i++) {
-            if (this._game[i][0] == 0) break;
-            else if (i == 6) {
-              this.msg = "   💀 Game Over 💀   ";
-              this.newGame();
+      if (!this.end) {
+        if (position > 0 && position <= 7) {
+          position = position - 1;
+          if (this._game[this._nextChipPlace[position]]) {
+            this._game[this._nextChipPlace[position]][
+              position
+            ] = this.currentPlayer;
+            if (this.currentPlayer == "🔵") this.currentPlayer = "🔴";
+            else this.currentPlayer = "🔵";
+            this._nextChipPlace[position]--;
+            this.print();
+            this.resetPlaceInput();
+            this.msg = "";
+            this._checkWin(position);
+          } else {
+            this.print();
+            this.msg = " ⚠️ Position is full! ⚠️ ";
+            for (let i = 0; i < 7; i++) {
+              if (this._game[i][0] == 0) break;
+              else if (i == 6) {
+                this.msg = "   💀 Game Over 💀   ";
+                this.newGame();
+              }
             }
           }
+        } else {
+          this.print();
+          this.msg = "⚠️ Not valid position ⚠️";
         }
-      } else {
-        this.print();
-        this.msg = "⚠️ Not valid position ⚠️";
       }
     },
     _checkWin(position) {
@@ -123,11 +126,11 @@ export default {
         else if (this._game[lastInsertion][i] == "🔴") player2[0]++;
 
         if (player1[0] == 4) {
-          this.resetGame();
+          this.end = true;
           this.msg = "🎉🏆 Player 🔵 Win! 🏆🎉";
           break;
         } else if (player2[0] == 4) {
-          this.resetGame();
+          this.end = true;
           this.msg = "🎉🏆 Player 🔴 Win! 🏆🎉";
           break;
         }
@@ -141,11 +144,11 @@ export default {
         else if (this._game[i][position] == "🔴") player2[1]++;
 
         if (player1[1] == 4) {
-          this.resetGame();
+          this.end = true;
           this.msg = "🎉🏆 Player 🔵 Win! 🏆🎉";
           break;
         } else if (player2[1] == 4) {
-          this.resetGame();
+          this.end = true;
           this.msg = "🎉🏆 Player 🔴 Win! 🏆🎉";
           break;
         }
@@ -165,11 +168,11 @@ export default {
           else if (this._game[i][diagonalPositionUD] == "🔴") player2[2]++;
 
           if (player1[2] == 4) {
-            this.resetGame();
+            this.end = true;
             this.msg = "🎉🏆 Player 🔵 Win! 🏆🎉";
             break;
           } else if (player2[2] == 4) {
-            this.resetGame();
+            this.end = true;
             this.msg = "🎉🏆 Player 🔴 Win! 🏆🎉";
             break;
           }
@@ -190,11 +193,11 @@ export default {
           else if (this._game[i][diagonalPositionDU] == "🔴") player2[3]++;
 
           if (player1[3] == 4) {
-            this.resetGame();
+            this.end = true;
             this.msg = "🎉🏆 Player 🔵 Win! 🏆🎉";
             break;
           } else if (player2[3] == 4) {
-            this.resetGame();
+            this.end = true;
             this.msg = "🎉🏆 Player 🔴 Win! 🏆🎉";
             break;
           }
@@ -202,6 +205,7 @@ export default {
       }
     },
     resetGame() {
+      this.end = false;
       this.newGame();
       this.print();
     },

@@ -27,7 +27,7 @@ export default {
       type: Object,
       default: () => ({
         firstMssg: "Hi,",
-        mssgArray: ["I'm a Front End Developer"]
+        mssgArray: ["Welcome"]
       })
     }
   },

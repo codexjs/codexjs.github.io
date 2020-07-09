@@ -44,9 +44,6 @@ export default {
       }
     }
   },
-  // mounted() {
-  // this.movingBackgroundImage();
-  // }
   methods: {
     changed(value, children) {
       if (children) {
@@ -59,17 +56,6 @@ export default {
         this.textConfig = value;
       }
     }
-    // movingBackgroundImage() {
-    //   var bg = document.querySelector(".hero-full-container");
-    //   var windowWidth = window.innerWidth / 5;
-    //   var windowHeight = window.innerHeight / 5;
-    //   bg.addEventListener("mousemove", e => {
-    //     var mouseX = e.clientX / windowWidth;
-    //     var mouseY = e.clientY / windowHeight;
-    //     bg.style.transform = `translate3d(-${mouseX * 1.5}px, -${mouseY *
-    //       1.5}px, 0)`;
-    //   });
-    // }
   }
 };
 </script>

@@ -33,7 +33,7 @@ for (let i = 0; i < menuKeys.length; i++) {
       for (let j = 0; j < value.children.length; j++) {
         newRoute.children.push({
           ...value.children[j],
-          component: () => import(`../views/${value.children[j].name}.vue`)
+          component: () => import(`../components/${value.name}/${value.children[j].name}.vue`)
         });
       }
     }
