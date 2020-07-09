@@ -46,12 +46,14 @@
 </template>
 
 <script>
-import { deepSet, deepGet } from "@/libraries/Deep";
-
 export default {
   name: "Editor",
   props: {
     config: [Object, Array],
+    content: {
+      type: [Object, Array],
+      defaut: {}
+    },
     white: Boolean
   },
   data: () => ({
@@ -61,6 +63,9 @@ export default {
     target: null,
     value: ""
   }),
+  mounted() {
+    this.origin = { ...this.content };
+  },
   methods: {
     close() {
       this.status = !this.status;
@@ -86,7 +91,7 @@ export default {
         this.menuShow = true;
         this.error = false;
 
-        this.$emit("changed", this.target, value);
+        this.$emit("changed", value, this.target.children);
       } catch (err) {
         this.error = true;
       }
@@ -94,49 +99,33 @@ export default {
     contentReset() {
       this.error = false;
       if (this.target.children) {
-        // let origin = this.origin[this.target.children[0]];
-        let origin = deepGet(this.origin, this.target.children);
+        let origin = this.origin[this.target.children];
         if (this.target.object) this.value = JSON.stringify(origin, null, 2);
         else this.value = origin;
-        this.$emit("changed", this.target, origin);
+        this.$emit("changed", origin, this.target.children);
       } else {
         if (this.target.object)
           this.value = JSON.stringify(this.origin, null, 2);
         else this.value = this.origin;
-        this.$emit("changed", this.target, this.origin);
+        this.$emit("changed", this.origin);
       }
     },
     keyPress(event) {
       if (event.which == 10) this.contentEdited();
     },
     menuClicked(v) {
-      if (v.content) {
-        let value = v.children ? deepGet(v.content, v.children) : v.content;
+      if (this.content) {
+        let value = v.children ? this.content[v.children] : this.content;
+        v.object = typeof value == "object";
         if (v.object) value = JSON.stringify(value, null, 2);
         this.value = value;
       }
       this.target = v;
       this.menuShow = !this.menuShow;
     },
-    back(){
+    back() {
       this.menuShow = !this.menuShow;
       this.error = false;
-    }
-  },
-  watch: {
-    config: {
-      immediate: true,
-      handler(newValue) {
-        newValue.forEach(res => {
-          let value = res.children
-            ? deepGet(res.content, res.children)
-            : res.content;
-          res.object = typeof value == "object";
-          if (!this.origin && !res.children) {
-            this.origin = { ...value };
-          }
-        });
-      }
     }
   }
 };

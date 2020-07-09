@@ -9,20 +9,19 @@
             </div>
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
-                  <Form />
-                  <Info :config="config" />
+                <Form />
+                <Info :config="config" />
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <editor :config="menuConfig" @changed="changed" />
+    <editor :config="menuConfig" :content="config" @changed="changed" />
   </div>
 </template>
 
 <script>
-import { deepSet } from "@/libraries/Deep";
 import { contactConfig } from "@/env";
 
 import Editor from "@/components/Editor.vue";
@@ -38,28 +37,37 @@ export default {
   },
   data: () => ({
     title: contactConfig.show,
-    config: contactConfig.config
-  }),
-  watch: {
-    config: {
-      immediate: true,
-      handler(newValue) {
-        this.menuConfig = [{ show: "Contact", content: newValue }];
-        Object.keys(newValue).forEach(res => {
-          let show = res.charAt(0).toUpperCase() + res.slice(1);
-          this.menuConfig.push({
-            show: show,
-            content: newValue,
-            children: [res]
-          });
-        });
+    config: contactConfig.config,
+    menuConfig: [
+      {
+        show: "Contact"
+      },
+      {
+        show: "Phone",
+        children: "phone"
+      },
+      {
+        show: "Email",
+        children: "email"
+      },
+      {
+        show: "Location",
+        children: "location"
+      },
+      {
+        show: "Social",
+        children: "social"
       }
-    }
-  },
+    ]
+  }),
   methods: {
-    changed(target, value) {
-      if (target.children) {
-        deepSet(this.config, target.children, value);
+    changed(value, children) {
+      if (children) {
+        if (!this.config[children]) {
+          this.config = { [children]: value, ...this.config };
+        } else {
+          this.config[children] = value;
+        }
       } else {
         this.config = value;
       }

@@ -31,12 +31,11 @@
         </div>
       </div>
     </div>
-    <editor :config="menuConfig" @changed="changed" />
+    <editor :config="menuConfig" :content="content" @changed="changed" />
   </div>
 </template>
 
 <script>
-import { deepSet } from "@/libraries/Deep";
 import { aboutConfig } from "@/env";
 
 import DynamicText from "@/components/DynamicText.js";
@@ -65,17 +64,16 @@ export default {
           let show = res.charAt(0).toUpperCase() + res.slice(1);
           this.menuConfig.push({
             show: show,
-            content: newValue,
-            children: [res]
+            children: res
           });
         });
       }
     }
   },
   methods: {
-    changed(target, value) {
-      if (target.children) {
-        deepSet(this.content, target.children, value);
+    changed(value, children) {
+      if (children) {
+        this.content[children] = value;
       } else {
         this.content = value;
       }

@@ -4,12 +4,11 @@
     :style="{ 'background-image': `url(${require('@/assets/images/space.jpg')})` }"
   >
     <dynamic-msg-vue :config="textConfig" />
-    <editor white :config="menuConfig" @changed="changed" />
+    <editor white :config="menuConfig" :content="textConfig" @changed="changed" />
   </div>
 </template>
 
 <script>
-import { deepSet } from "@/libraries/Deep";
 import { homeConfig, templateConfig } from "@/env";
 
 import Editor from "@/components/Editor.vue";
@@ -25,30 +24,38 @@ export default {
     textConfig: homeConfig.textConfig,
     menuConfig: []
   }),
-  // mounted() {
-  // this.movingBackgroundImage();
-  // }
   watch: {
     textConfig: {
       immediate: true,
       handler(newValue) {
-        let menu = ["First Message", "Second Message"];
-        let keys = Object.keys(newValue);
-        this.menuConfig = [{ show: "Home", content: newValue }];
-        menu.forEach((res, i) => {
-          this.menuConfig.push({
-            show: res,
-            content: newValue,
-            children: [keys[i]]
-          });
-        });
+        this.menuConfig = [
+          {
+            show: "Home"
+          },
+          {
+            show: "First Message",
+            children: "firstMssg"
+          },
+          {
+            show: "Second Message",
+            children: "mssgArray"
+          }
+        ];
       }
     }
   },
+  // mounted() {
+  // this.movingBackgroundImage();
+  // }
   methods: {
-    changed(target, value) {
-      if (target.children) deepSet(this.textConfig, target.children, value);
-      else {
+    changed(value, children) {
+      if (children) {
+        if (!this.textConfig[children]) {
+          this.textConfig = { [children]: value, ...this.textConfig };
+        } else {
+          this.textConfig[children] = value;
+        }
+      } else {
         this.textConfig = value;
       }
     }

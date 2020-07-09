@@ -14,12 +14,11 @@
         </div>
       </div>
     </div>
-    <editor :config="menuConfig" @changed="changed" />
+    <editor :config="menuConfig" :content="projectsConfig" @changed="changed" />
   </div>
 </template>
 
 <script>
-import { deepSet } from "@/libraries/Deep";
 import { worksConfig, projectsConfig } from "@/env";
 
 import Carousel from "@/components/Works/Carousel/Carousel.vue";
@@ -55,21 +54,21 @@ export default {
     projectsConfig: {
       immediate: true,
       handler(newValue) {
-        this.menuConfig = [{ show: "Projects", content: newValue }];
+        this.menuConfig = [{ show: "Works", content: newValue }];
         Object.keys(newValue).forEach(res => {
+          let show = res.charAt(0).toUpperCase() + res.slice(1);
           this.menuConfig.push({
-            show: newValue[res].title,
-            content: newValue,
-            children: [res]
+            show: show,
+            children: res
           });
         });
       }
     }
   },
   methods: {
-    changed(target, value) {
-      if (target.children) {
-        deepSet(this.projectsConfig, target.children, value);
+    changed(value, children) {
+      if (children) {
+        this.projectsConfig[children] = value;
       } else {
         this.projectsConfig = value;
         if (this.$route.path != "/works") this.$router.push({ path: "/works" });
