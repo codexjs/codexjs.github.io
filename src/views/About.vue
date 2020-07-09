@@ -38,6 +38,7 @@
 <script>
 import { deepSet } from "@/libraries/Deep";
 import { aboutConfig } from "@/env";
+
 import DynamicText from "@/components/DynamicText.js";
 import Editor from "@/components/Editor.vue";
 

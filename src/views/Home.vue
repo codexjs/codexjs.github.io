@@ -9,10 +9,11 @@
 </template>
 
 <script>
-import DynamicMsgVue from "@/components/DynamicMsg.vue";
-import Editor from "@/components/Editor.vue";
-import { homeConfig, templateConfig } from "@/env";
 import { deepSet } from "@/libraries/Deep";
+import { homeConfig, templateConfig } from "@/env";
+
+import Editor from "@/components/Editor.vue";
+import DynamicMsgVue from "@/components/Home/DynamicMsg.vue";
 
 export default {
   name: "Home",
@@ -65,5 +66,3 @@ export default {
   }
 };
 </script>
-<style>
-</style>

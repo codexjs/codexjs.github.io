@@ -22,7 +22,7 @@
 import { deepSet } from "@/libraries/Deep";
 import { worksConfig, projectsConfig } from "@/env";
 
-import Carousel from "@/components/Carousel/Carousel.vue";
+import Carousel from "@/components/Works/Carousel/Carousel.vue";
 import Editor from "@/components/Editor.vue";
 
 export default {

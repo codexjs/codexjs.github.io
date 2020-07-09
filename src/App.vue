@@ -23,9 +23,4 @@ export default {
 
 <style lang="scss">
 @import "./styles/main.scss";
-#particles-js {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-}
 </style>
