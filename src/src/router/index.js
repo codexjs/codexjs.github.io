@@ -50,7 +50,6 @@ for (let i = 0; i < menuKeys.length; i++) {
 
 const routes = dynamicRoutes;
 const router = new VueRouter({
-  mode: 'history',
   routes
 })
 
