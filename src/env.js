@@ -3,7 +3,7 @@ export const homeConfig = {
     show: "Home",
     textConfig: {
         firstMssg: "Hi,",
-        mssgArray: ["Welcome", "I'm Daniel", "Front End Developer"]
+        mssgArray: ["Welcome", "to my portfolio"]
     }
 }
 
