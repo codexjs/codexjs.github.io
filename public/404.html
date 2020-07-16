@@ -16,11 +16,9 @@
         continue.</strong
       >
     </noscript>
-    <div id="site-border-left"></div>
-    <div id="site-border-right"></div>
-    <div id="site-border-top"></div>
-    <div id="site-border-bottom"></div>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <script>
+      let hrefArr = location.href.split(".com")[1];
+      window.location.href = `./#${hrefArr}`;
+    </script>
   </body>
 </html>
