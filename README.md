@@ -1,30 +1,31 @@
 # Vuefolio
 
-## What is this?
+Vuefolio is a statick webpage converted in to a dynamic webpage using VueJs.
 
-Well as a frontend developer I have to have my own portfolio where to show my projects.
-So instead of using a tool like Wordpress, Wix ... I decided to made my own with Vue and also been able to show my Vue knowledge in this moment.
-I started with a simple template which you can find [here](http://www.mashup-template.com/preview.html?template=univers) and I transform the entire static page in a Dynamic Web Page using Vue.
+## What makes Vuefolio special?
 
-## So what makes this portfolio special?
+The interisting thing about this project is how the components are made, all of them can be changed just changing one file letting you make a entire new webpage just changing some variables, even the routing is dynamic.
 
-Well apparently it's just a portfolio but the cool thing is that you can change what you want In real time!
-That means that you can play with the entire webpage and see the power of the Dynamic Components just clicking in edit you will see what you can change.
+In all the pages you can find a edit button which let you change this variables letting you experiment with the dynamic components.
 
-## env.js
+You can learn more about how this works in the documentation above.
 
-If you decide to download the project you can see that changing the entire webpage is as simple as change the file env.js just changing the variables inside that file
-you will be able to create a complete new webpage with the content that you want just changing this variables.
+## The purpose of this project?
 
-## Lorem Ipsum ¿?
+The main purpose of this project was to learn more about VueJs, the original idea was to make a portfolio that is easy to edit and scale, and end up beeing a editable dynamic components museum.
 
-Right now the content of this project is just a mockup, in the future I will change the entire page in order to convert it in my own portfolio with my projects.
+## Documentation
 
-# Edit Button
+### env.js
 
-Every page has an Edit button which let you change practically everything you see on the screen, all the changed that you make are just local changes, that mean's that if you reload the page or go to another one the values will return to it's original values.
+If you decide to download the project you can see that changing the entire webpage is as simple as change the file env.js just changing the variables inside that file.
+You will be able to create a complete new webpage with the content that you want just changing this variables.
 
-## Home
+### Edit Button
+
+Every page has an Edit button which let you change practically everything you see on the screen, all the changes that you make are just local changes, that mean's that if you reload the page or go to another one the values will return to it's original values.
+
+### Home
 
 In the Edit Home Menu you can find 3 options:
 
@@ -32,7 +33,7 @@ In the Edit Home Menu you can find 3 options:
 - First Message - Let you edit the first message of the page.
 - Second Message - Let you edit the array of messages of the second message. (This message was made with typed.js)
 
-### firstMssg
+#### firstMssg
 
 This property change the first title text in the page.
 
@@ -42,7 +43,7 @@ This property change the first title text in the page.
 }
 ```
 
-### mssgArray
+#### mssgArray
 
 An array of messages to config typed.js
 
@@ -53,7 +54,7 @@ An array of messages to config typed.js
 }
 ```
 
-## Works
+### Works
 
 In the Edit Work Menu you will find at least the Works Button which let you edit the entire config object and also the list of all the projects / works in the Works Config Object.
 
@@ -61,11 +62,11 @@ In the Edit Work Menu you will find at least the Works Button which let you edit
 
 I encourage you to play with the objects and see how easy is to add delete or changes any object and see the change reflected on the screen.
 
-## Work Options
+#### Work Options
 
 Inside the works object you will find all the works objects created at the moment, you can config this object whit:
 
-### title
+#### title
 
 This property change the title of that "work" in the carousel and also in the page.
 
@@ -75,7 +76,7 @@ This property change the title of that "work" in the carousel and also in the pa
 }
 ```
 
-### description
+#### description
 
 This property change the description showed in the carousel.
 
@@ -85,7 +86,7 @@ This property change the description showed in the carousel.
 }
 ```
 
-### image
+#### image
 
 > ⚠️ This option is just useful in env.js file letting you changing the image fast.
 > The image that is going to charge for that work.
@@ -96,7 +97,7 @@ This property change the description showed in the carousel.
 }
 ```
 
-### content
+#### content
 
 In this property I'm going to introduce you the DynamicText component which is a simple component which let you show a title or a text depending on a configuration where you have two parameters type and content:
 
@@ -129,7 +130,7 @@ Inside of the content property you need an Array of DynamicText Config Objects o
 }
 ```
 
-## About Me
+### About Me
 
 This Menu work the same as The Works Menu, you will always find the About Me option which let you change the About Me Config Object and also the list of all current properties inside the About Me Config Object.
 
@@ -146,7 +147,7 @@ The configuration of this object works exactly as the content property on the Wo
 }
 ```
 
-## Contact
+### Contact
 
 In this page you will find a simple Contact form, information and social media buttons.
 In this moment you can only change the information or the social media links, you just have to change the value of the property that you want to change.
@@ -167,7 +168,7 @@ In this moment you can only change the information or the social media links, yo
 Also you can click in a specific option and change it.
 "Phone", "Email", "Location" can be just strings and social must be an object as showed in the example above.
 
-## The Editor
+### The Editor
 
 In the editor you have 3 options:
 
@@ -175,7 +176,7 @@ In the editor you have 3 options:
 - The Edit button (Edit the selected object to the value in the textbox)
 - The right button (Set the value of the selected object to it's original value)
 
-## env.js file
+### env.js file
 
 In this file is where all the configuration objects of the entire webpage are stored.
 Here you can change and personalize the webpage as you like just changing the value of the objects as you wish.
@@ -220,28 +221,6 @@ This last object is one of the most important objects in order to make this webp
 The dynamic routes are going to be generated based on the content in this object using the key's as the path and the property name to specify which component charge, also if the property "children" exist it will be added too.
 
 You can check how this works in the index.js where you can find the code to make the routing object.
-
-## Project setup
-
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## License
 
